@@ -2,7 +2,7 @@ import * as React from 'react';
 import './ProfileCard.css';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TooltipHost } from 'office-ui-fabric-react';
+import { TooltipHost, TooltipOverflowMode } from 'office-ui-fabric-react';
 import AppContext from '../AppContext';
 
 const defaultCompanyImageSrc = 'assets/company_image.png';
@@ -145,13 +145,6 @@ export class ProfileCard extends React.Component<ProfileCardProps, {}> {
         ) : null;
 
         if (email && !this.props.parentIsCompany) {
-            let emailTextContainer = null;
-            let emailSize = this.getTextWidth(email, 'normal 14px Arial');
-            if (emailSize > maxEmailWidth) {
-                emailTextContainer = <TooltipHost content={email}>{email}</TooltipHost>;
-            } else {
-                emailTextContainer = <>{email}</>;
-            }
             emailDiv = (
                 <div
                     className="profile-card-email"
@@ -171,7 +164,11 @@ export class ProfileCard extends React.Component<ProfileCardProps, {}> {
                             textOverflow: 'ellipsis',
                             maxWidth: maxEmailWidth + 'px',
                         }}>
-                        {emailTextContainer}
+                        <TooltipHost
+                            content={email}
+                            overflowMode={TooltipOverflowMode.Parent}>
+                            {email}
+                        </TooltipHost>
                     </div>
                 </div>
             );
