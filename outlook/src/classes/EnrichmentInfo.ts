@@ -13,6 +13,7 @@ export enum EnrichmentInfoType {
     NotConnected_InsufficientCredit = 'exhausted_requests',
     NotConnected_InternalError = 'internal_error',
     CouldNotGetTranslations = 'could_not_get_translations',
+    OdooCustomError = 'odoo_custom_error',
 }
 class EnrichmentInfo {
     type: EnrichmentInfoType;
@@ -53,6 +54,8 @@ class EnrichmentInfo {
                 );
             case EnrichmentInfoType.CouldNotGetTranslations:
                 return _t('An error has occurred when trying to fetch translations.');
+            case EnrichmentInfoType.OdooCustomError:
+                return this.info;
             default:
                 return '';
         }

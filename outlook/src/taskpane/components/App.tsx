@@ -213,6 +213,7 @@ export default class App extends React.Component<AppProps, AppState> {
                 case EnrichmentInfoType.NotConnected_InsufficientCredit:
                 case EnrichmentInfoType.NotConnected_InternalError:
                 case EnrichmentInfoType.Other:
+                case EnrichmentInfoType.OdooCustomError:
                 case EnrichmentInfoType.CouldNotGetTranslations:
                     bars.push(
                         <MessageBar
