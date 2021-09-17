@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Logger.css';
 import { ContentType, HttpVerb, sendHttpRequest } from '../../../utils/httpRequest';
 import AppContext from '../AppContext';
 import api from '../../api';

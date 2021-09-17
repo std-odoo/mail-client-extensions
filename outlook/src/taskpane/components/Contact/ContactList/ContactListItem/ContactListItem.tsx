@@ -38,7 +38,6 @@ class ContactListItem extends React.Component<CustomContactListItemProps, {}> {
             facebook: undefined,
             crunchbase: undefined,
             linkedin: undefined,
-            isBig: !this.context.isConnected() || !this.props.partner.isAddedToDatabase(),
             isCompany: this.props.partner.isCompany,
         } as ProfileCardProps;
 
@@ -65,8 +64,8 @@ class ContactListItem extends React.Component<CustomContactListItemProps, {}> {
                     {addButton}
                     <div className="contact-profile-card-container">
                         <ProfileCard {...profileCardData} />
+                        {logButton}
                     </div>
-                    {logButton}
                 </div>
             </React.Fragment>
         );
