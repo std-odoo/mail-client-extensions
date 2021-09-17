@@ -344,7 +344,7 @@ class CompanySection extends React.Component<CompanySectionProps, CompanySection
                     </div>
                 </div>
             );
-        } else {
+        } else if (this.props.partner.isAddedToDatabase()) {
             return (
                 <div className="muted-text insights-info">
                     {_t('No company attached to this contact')}
@@ -356,6 +356,7 @@ class CompanySection extends React.Component<CompanySectionProps, CompanySection
                 </div>
             );
         }
+        return null;
     };
 
     private getCompanyEnrichmentEmptySection = () => {
