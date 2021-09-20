@@ -21,7 +21,6 @@ const ContactList = (props: ContactListProps) => {
                 return (
                     <ContactListItem
                         partner={partner}
-                        selectable={true}
                         onItemClick={onPartnerClick}
                         key={partner.id}
                     />
