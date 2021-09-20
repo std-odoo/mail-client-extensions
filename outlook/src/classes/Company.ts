@@ -2,10 +2,6 @@ import Address from './Address';
 import EnrichmentInfo, { EnrichmentInfoType } from './EnrichmentInfo';
 
 /***
- * id reserved for non empty companies which we fetch directly from IAP.
- */
-const ID_COMPANY_FROM_REVEAL: number = -2;
-/***
  * id reserved for empty companies.
  */
 const ID_COMPANY_EMPTY: number = -1;
@@ -66,7 +62,7 @@ class Company {
 
     static fromRevealJSON(o: Object): Company {
         const company = new Company();
-        company.id = ID_COMPANY_FROM_REVEAL;
+        company.id = ID_COMPANY_EMPTY;
         company.additionalInfo = o;
         return company;
     }
@@ -194,7 +190,7 @@ class Company {
      * Returns True if the company exists in the Odoo database, False otherwise
      */
     isAddedToDatabase(): boolean {
-        return this.id > 0;
+        return this.id && this.id > 0;
     }
 }
 
