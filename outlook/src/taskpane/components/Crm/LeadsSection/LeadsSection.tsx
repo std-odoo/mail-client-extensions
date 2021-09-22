@@ -87,7 +87,6 @@ class LeadsSection extends React.Component<LeadSectionProps, LeadsSectionState> 
                 </div>
             );
         }
-
         return (
             <div className="list-text">
                 {_t('No opportunities found for this contact.')}

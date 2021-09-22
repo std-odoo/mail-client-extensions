@@ -15,30 +15,22 @@ type LeadsListItemProps = {
 class LeadListItem extends React.Component<LeadsListItemProps, {}> {
     openInOdoo = () => {
         const cids = this.context.getUserCompaniesString();
-        const url =
-            api.baseURL +
-            `/web#id=${this.props.lead.id}&model=crm.lead&view_type=form${cids}`;
+        const url = `${api.baseURL}/web#id=${this.props.lead.id}&model=crm.lead&view_type=form${cids}`;
         window.open(url, '_blank');
     };
 
     render() {
-        let expectedRevenueString;
-        if (this.props.lead.recurringPlan) {
-            expectedRevenueString = _t(
-                '%(expected_revenue)s + %(recurring_revenue)s %(recurring_plan)s at %(probability)s%',
-                {
-                    expected_revenue: this.props.lead.expectedRevenue,
-                    recurring_revenue: this.props.lead.recurringRevenue,
-                    recurring_plan: this.props.lead.recurringPlan,
-                    probability: this.props.lead.probability,
-                },
-            );
-        } else {
-            expectedRevenueString = _t('%(expected_revenue)s at %(probability)s%', {
+        const expectedRevenueString = _t(
+            this.props.lead.recurringPlan
+                ? '%(expected_revenue)s + %(recurring_revenue)s %(recurring_plan)s at %(probability)s%'
+                : '%(expected_revenue)s at %(probability)s%',
+            {
                 expected_revenue: this.props.lead.expectedRevenue,
+                recurring_revenue: this.props.lead.recurringRevenue,
+                recurring_plan: this.props.lead.recurringPlan,
                 probability: this.props.lead.probability,
-            });
-        }
+            },
+        );
 
         return (
             <div className="list-item-root-container" onClick={this.openInOdoo}>
